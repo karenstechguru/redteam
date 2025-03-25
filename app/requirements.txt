@@ -1,6 +1,6 @@
 
-pip install Flask gunicorn  
+pip install Flask  
+
+pip install gunicorn 
 
 pip install flask-session
-
-pip freeze > requirements.txt
