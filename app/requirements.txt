@@ -1,11 +1,6 @@
-# If you haven't already, create a virtual environment:
-python -m venv venv
-source venv/bin/activate  # On Windows use venv\Scripts\activate
 
-# Install your dependencies:
-pip install Flask gunicorn  # or other necessary packages
+pip install Flask gunicorn  
 
 pip install flask-session
 
-# Freeze the installed dependencies into requirements.txt:
 pip freeze > requirements.txt
