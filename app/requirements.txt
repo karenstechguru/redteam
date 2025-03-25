@@ -1,3 +1,3 @@
-Flask  
-gunicorn 
-flask-session
+Flask==2.2.5
+gunicorn==20.1.0
+Flask-Session==0.4.0
