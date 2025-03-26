@@ -56,6 +56,11 @@ def go():
     # After 5 seconds, redirect to the decoded URL
     return render_template("redirect.html", url=real_url)
 
+   @app.after_request
+    def add_csp_headers(response):
+    response.headers["Content-Security-Policy"] = "script-src 'self' 'unsafe-inline';"
+    return response
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 10000))  # Render assigns a port dynamically
     app.run(host="0.0.0.0", port=port, debug=False)
