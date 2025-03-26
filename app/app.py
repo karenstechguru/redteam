@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Configure Flask-Session (Stores session in memory, not disk)
 app.config["SESSION_TYPE"] = "filesystem"  # Uses temporary file storage
 app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_USE_SIGNER"] = True
+app.config["SESSION_USE_SIGNER"] = False
 app.config["SECRET_KEY"] = os.urandom(24)  # Random secret key for security
 Session(app)
 
