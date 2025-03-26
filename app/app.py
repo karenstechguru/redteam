@@ -49,5 +49,5 @@ def go():
     return render_template("redirect.html", url=real_url)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Get PORT from Render, default to 5000
-    app.run(host="0.0.0.0", port=port)
+    port = int(os.getenv("PORT", 10000))  # Render assigns a port dynamically
+    app.run(host="0.0.0.0", port=port, debug=False)
