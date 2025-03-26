@@ -29,7 +29,7 @@ def decode_obfuscated_string(data):
 @app.route("/")
 def home():
     """Home route with instructions."""
-    return "Welcome to RedTeam! Use /go?d=<obfuscated_string> to redirect."
+    return "Welcome! redirecting...."
 
 @app.route("/go")
 def go():
