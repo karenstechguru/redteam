@@ -1,9 +1,19 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="6;url={{ real_url }}">
+    <title>Loading...</title>
+    <script>
+        // Check if 5 seconds have passed
+        if (!sessionStorage.getItem("redirected")) {
+            setTimeout(function() {
+                sessionStorage.setItem("redirected", "true");
+                window.location.href = "{{ real_url }}";
+            }, 6000);  // 6 seconds delay
+        }
+    </script>
 </head>
-<body>  
-    <h1><h1>
-        <p>You will be redirected in a few seconds.</p>
+<body>
+    <h1>Loading...</h1>
+    <p>Please wait...</p>
 </body>
 </html>
