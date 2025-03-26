@@ -15,14 +15,16 @@ app.config["SECRET_KEY"] = os.urandom(24)  # Random secret key for security
 Session(app)
 
 def decode_obfuscated_string(data):
-    """Decodes an obfuscated URL (Reverse + Hex + Base64)."""
+    """Decodes an obfuscated URL (Reverse -> Hex -> Double Base64)."""
     try:
         reversed_data = data[::-1]  # Step 1: Reverse the string
         hex_decoded = binascii.unhexlify(reversed_data).decode()  # Step 2: Hex decode
-        decoded = base64.b64decode(hex_decoded).decode()  # Step 3: Base64 decode
+        base64_decoded_1 = base64.b64decode(hex_decoded).decode()  # Step 3: First Base64 decode
+        decoded = base64.b64decode(base64_decoded_1).decode()  # Step 4: Second Base64 decode
         return decoded
     except:
         return None  # Return None if decoding fails
+  # Return None if decoding fails
 
 @app.route("/")
 def home():
