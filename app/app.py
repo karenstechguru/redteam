@@ -31,6 +31,11 @@ def go():
     if not obf:
         return "Invalid request", 400  # If no URL, return error
 
+    @app.route("/")
+def home():
+    return "Welcome to RedTeam! Use /go?d=<obfuscated_string> to redirect."
+
+
     real_url = decode_obfuscated_string(obf)  # Decode the URL
     if not real_url:
         return "Invalid link", 400  # If decoding fails, return error
