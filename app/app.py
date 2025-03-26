@@ -24,17 +24,17 @@ def decode_obfuscated_string(data):
     except:
         return None  # Return None if decoding fails
 
+@app.route("/")
+def home():
+    """Home route with instructions."""
+    return "Welcome to RedTeam! Use /go?d=<obfuscated_string> to redirect."
+
 @app.route("/go")
 def go():
     """Handles obfuscated URL and applies a delay before redirecting."""
     obf = request.args.get("d")  # Get the obfuscated URL
     if not obf:
         return "Invalid request", 400  # If no URL, return error
-
-    @app.route("/")
-def home():
-    return "Welcome to RedTeam! Use /go?d=<obfuscated_string> to redirect."
-
 
     real_url = decode_obfuscated_string(obf)  # Decode the URL
     if not real_url:
