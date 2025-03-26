@@ -2,11 +2,15 @@ import base64
 import binascii
 
 def encode_url(real_url):
-    # Encode in Base64
-    base64_encoded = base64.b64encode(real_url.encode()).decode()
+    """Encodes a URL using Double Base64 -> Hex -> Reverse."""
+    # First Base64 Encode
+    base64_encoded_1 = base64.b64encode(real_url.encode()).decode()
+    
+    # Second Base64 Encode (Extra Layer)
+    base64_encoded_2 = base64.b64encode(base64_encoded_1.encode()).decode()
     
     # Convert to Hex
-    hex_encoded = binascii.hexlify(base64_encoded.encode()).decode()
+    hex_encoded = binascii.hexlify(base64_encoded_2.encode()).decode()
     
     # Reverse the string
     obfuscated = hex_encoded[::-1]
@@ -17,8 +21,7 @@ def encode_url(real_url):
 real_url = "http://google.com"
 obfuscated_string = encode_url(real_url)
 
-# Generate a disguised tracking-style link
-tracking_id = "track-" + obfuscated_string[:10]  # Fake tracking ID
-redirect_link = f"http://127.0.0.1:5000/go?track={tracking_id}&d={obfuscated_string}"
+# Generate the redirect link
+redirect_link = f"https://redteam-u6uk.onrender.com/go?d={obfuscated_string}"
 
 print("Generated Redirect Link:", redirect_link)
